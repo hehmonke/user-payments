@@ -1,0 +1,24 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "ES2020",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "strict": true,
+    "baseUrl": ".",
+    "rootDir": ".",
+    "paths": {
+      "@user-payments/backend/entities": ["libs/backend/entities/src/index.ts"],
+      "@user-payments/backend/entity-custom-types": ["libs/backend/entity-custom-types/src/index.ts"],
+      "@user-payments/backend/services": ["libs/backend/services/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

@@ -1,0 +1,87 @@
+{
+  "root": true,
+  "env": {
+    "node": true
+  },
+  "ignorePatterns": ["**/*"],
+  "plugins": [
+    "@nrwl/nx",
+    "@typescript-eslint",
+    "prettier",
+    "import",
+    "sonarjs",
+    "promise",
+    "unicorn"
+  ],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {
+        "@nrwl/nx/enforce-module-boundaries": [
+          "error",
+          {
+            "enforceBuildableLibDependency": true,
+            "allow": [],
+            "depConstraints": [
+              { "sourceTag": "*", "onlyDependOnLibsWithTags": ["*"] }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@nrwl/nx/typescript"],
+      "parserOptions": { "project": "./tsconfig.*?.json" },
+      "rules": {}
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "extends": ["plugin:@nrwl/nx/javascript"],
+      "rules": {}
+    }
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "plugin:sonarjs/recommended",
+    "plugin:promise/recommended",
+    "plugin:unicorn/recommended"
+  ],
+  "rules": {
+    "import/exports-last": "error",
+    "import/order": ["error", {
+      "newlines-between": "always",
+      "pathGroups": [
+        {
+          "pattern": "@user-payments/**",
+          "group": "external",
+          "position": "after"
+        }
+      ],
+      "alphabetize": {
+        "order": "asc"
+      }
+    }],
+    "import/newline-after-import": ["error", { "count": 1 }],
+    "promise/prefer-await-to-then": "error",
+    "promise/prefer-await-to-callbacks": "error"
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true,
+        "project": [
+          "./tsconfig.*.json",
+          "apps/*/tsconfig.json",
+          "libs/*/tsconfig.json"
+        ]
+      }
+    }
+  }
+}
