@@ -12,6 +12,9 @@ export class Account {
   @Property({ type: DecimalType, default: 0 })
   amount!: string;
 
+  @Property({ version: true })
+  version!: number;
+
   @OneToOne(() => User, (e) => e.account, { owner: true, wrappedReference: true })
   user!: IdentifiedReference<User>;
 }
